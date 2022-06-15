@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable-v24/home_filled_24dp.xml" value="0.2855" />
+        <entry key="app/src/main/res/drawable/close_24dp.xml" value="0.2675" />
+        <entry key="app/src/main/res/drawable/selector_home.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_home_page.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3307291666666667" />
+        <entry key="app/src/main/res/layout/activity_registration.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/drop_down_menu_options.xml" value="0.32653985507246375" />
+        <entry key="app/src/main/res/layout/fragment_receiver.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_sender.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_show_holes_map.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/bottom_navitagion_menu.xml" value="0.3484375" />
+        <entry key="app/src/main/res/menu/drop_down_menu.xml" value="0.3484375" />
+        <entry key="app/src/main/res/menu/homepage_topappbar_menu.xml" value="0.3484375" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/holescanner_logo.xml" value="0.2785" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/holescanner_logo_round.xml" value="0.176" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.283" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.283" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/natour_logo.xml" value="0.18" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

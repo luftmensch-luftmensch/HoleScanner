@@ -1,0 +1,35 @@
+#+OPTIONS: date:nil title:nil toc:nil author:nil
+#+STARTUP: overview
+* HoleScanner
+#+BEGIN_HTML
+<div align="center">
+
+  <!-- License -->
+  <a href="https://github.com/luftmensch-luftmensch/HoleScanner/blob/main/LICENSE"
+          ><img
+              src="https://img.shields.io/badge/License-GPL_v3-blue.svg?style=for-the-badge&color=red"
+              alt="License"
+      /></a>
+
+  <!-- Android -->
+  <a href="https://github.com/luftmensch-luftmensch/HoleScanner/"
+          ><img
+              src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white"
+              alt="Powered by Android"
+      /></a>
+
+  <!-- C -->
+  <a href="https://github.com/luftmensch-luftmensch/HoleScanner/tree/main/Server"
+          ><img
+              src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white"
+              alt="Powered by C"
+      /></a>
+</div>
+#+END_HTML
+
+* Contributori
+#+BEGIN_HTML
+<a href="https://github.com/luftmensch-luftmensch">
+    <img src="./Risorse/Contributors/Valentino.png" width=60px height=60px>
+</a>
+#+END_HTML

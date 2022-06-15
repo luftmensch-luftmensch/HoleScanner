@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">HoleScanner</string>
+    <string name="MessaggioDiBenvenuto">\"Un nuovo modo per mappare le buche!\"</string>
+    <string name="HoleScanner">HoleScanner</string>
+    <string name="InserireCredenziali">Inserisci le tue credenziali</string>
+    <string name="Conferma">Conferma</string>
+    <string name="Username">Username</string>
+    <string name="RicercaAppBarHint">Inserisci qui il testo di ricerca</string>
+    <string name="ScopriButton">Scopri</string>
+    <string name="HomeButton">Home</string>
+    <string name="RicercaButton">Ricerca</string>
+    <string name="FAB_Description">Questo bottone è multifunzionale</string>
+    <string name="avvia">Avvia la registrazione</string>
+    <string name="IconaLogout">Logout</string>
+    <string name="avviaCalibrazione">Avvia la calibrazione</string>
+    <string name="PerIniziare">Per iniziare la calibrazione clicca\n sul pulsante sottostante</string>
+    <string name="stop">Interrompi la registrazione</string>
+    <string name="VisualizzaBucheMappa">Visualizza buche</string>
+
+    <string name="Latitudine">Latitudine:</string>
+    <string name="Longitudine">Longitudine:</string>
+    <string name="PerIniziareReceiver">Per iniziare seleziona il raggio d\'azione</string>
+    <string name="SelezionaDistanza">Seleziona distanza</string>
+    <string name="avviaRicerca">Avvia la ricerca</string>
+</resources>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>HoleScanner</title>
+<meta name="author" content="Valentino Bocchetti - Mario Carofano"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/moon.css" id="theme"/>
+
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<!-- Per ovviare alla customizzazione post export del file customizzo le impostazioni e inserisco un custom stylesheet -->
+<link rel="stylesheet" href="./theme.css" id="theme"/>
+<link rel="stylesheet" href="plugins/highlight/monokai.css">
+
+
+<section id="sec-title-slide" data-background="./sfondo.jpg">
+  <h1><a href="https://natour2022.netlify.app/"><img src="logo.png" alt="HoleScanner" width="10%" align="top"/></a>HoleScanner</h1>
+
+  <h4 class="subtitle">Mappa le buche con noi!</h4>
+  <br>
+  <h2 class="author">Valentino Bocchetti - Mario Carofano</h2>
+
+  <img src="FedericoII.png" alt="FedericoII.png" width="8%" align="center"/>
+
+  <aside class="notes">
+    <p>
+        Prima di iniziare la presentazione, vi vorremmo informare della presenza di HoleScanner sul web.
+    </p>
+
+    <p>
+        Abbiamo infatti tirato su un sito web, che permetta non solo a voi clienti di conoscere la nostra implementazione del progetto, ma anche al mondo intero.
+    </p>
+
+    <p>
+        Vi lasciamo quindi il link per accedere al sito web in chat.
+    </p>
+  </aside>
+
+</section>
+
+<!-- Aggiungiamo uno stile per settare il testo scritto justified -->
+<style type="text/css">
+    .underline { text-decoration: underline; }
+    p { text-align: left; }
+</style>
+<section>
+<section id="slide-orgcf9a280">
+<h2 id="orgcf9a280">La nostra idea di Potholes</h2>
+<p class="fragment (appear)">
+<i>HoleScanner ©</i> nasce come prodotto di quanto appreso e studiato durante il corso di <b>Laboratorio di Sistemi Operativi</b> nel AA. 2021-2022, con lo scopo di puntare alla mappatura, visualizzazione e rilevamento delle buche sul manto stradale Italiano.
+</p>
+</section>
+<section id="slide-org458ab1b">
+<h3 id="org458ab1b">Su HoleScanner</h3>
+<div class="org-center">
+<p>
+Se vi piace l’idea di migliorare lo stato delle strate della tua città, HoleScanner è l’app che fa per voi!
+</p>
+</div>
+</section>
+<section id="slide-org458ab1b-split">
+
+<p>
+Il progetto si concretizza in 2 componenti ben definite:
+</p>
+<ul>
+<li class="fragment appear">Un backend scritto in C per la gestione dei dati, hostato su una macchina virtuale messa a disposizione dal noto provider Azure;</li>
+<li class="fragment appear">Una applicazione mobile scritta in Java che fa da client (al momento offriamo solo un client android);</li>
+
+</ul>
+</section>
+<section id="slide-org183f7c2">
+<h3 id="org183f7c2">Primo avvio</h3>
+<p class="fragment (appear)">
+Al primo avvio agli utilizzatori della piattaforma viene mostrata una schermata di benvenuto in cui gli viene chiesto di inserire un nickname (utilizzato per la sua identificazione all'interno del Server), del tutto anonimo (si punta al massimo rispetto della privacy degli utenti).
+</p>
+</section>
+<section id="slide-org450832a">
+<h3 id="org450832a">Post registrazione</h3>
+<p class="fragment (appear)">
+In seguito alla conferma dell'inserimento del nickname, l'utente viene catapultato sulla Homepage, nella quale, attraverso la pressione di alcuni pulsanti ha modo di:
+</p>
+<ul>
+<li class="fragment appear">Inizializzare la calibrazione del dispositivo;</li>
+<li class="fragment appear">Iniziare la registrazione, correlata con un cronometro che indica il tempo trascorso dall'inizio della registrazione;</li>
+<li class="fragment appear">Interrompere la registrazione degli eventi;</li>
+
+</ul>
+</section>
+<section id="slide-org086ce35">
+<h3 id="org086ce35">Visualizzazione buche</h3>
+<p class="fragment (appear)">
+Dalla Homepage (che gestisce la registrazione di nuove buche) è possibile passare alla schermata di visualizzazione buche nei paraggi, che ricadano in un range definito precedentemente.
+</p>
+</section>
+<section id="slide-org0a34649">
+<h3 id="org0a34649">Demo</h3>
+<p>
+Di seguito riportiamo una breve demo che mostra in azione <b>HoleScanner</b> durante il suo utilizzo:
+</p>
+</section>
+<section id="slide-org0a34649-split">
+
+<!-- È possibile anche inserire il path del file che si vuole caricare -->
+<video data-autoplay src="./HoleScanner.mp4"></video>
+</section>
+</section>
+<section>
+<section id="slide-org6737661">
+<h2 id="org6737661">Guida al Server</h2>
+<div class="outline-text-2" id="text-org6737661">
+</div>
+</section>
+<section id="slide-orgd00fa2d">
+<h3 id="orgd00fa2d">Funzionalità</h3>
+<p class="fragment (appear)">
+Il Sistema, deve offrire, in seguito alla connessione (di tipo concorrente) di un client una serie di funzionalità:
+</p>
+<ol>
+<li class="fragment appear">Permettere all'utente di avviare una sessione di registrazione eventi, durante la quale 
+<ol>
+<li>Si connette al server (Connessione di tipo socket di tipo <code>TCP/IP</code>) per richiedere i parametri di soglia;</li>
+<li>In caso di una rilevazione di una buca, si connette nuovamente al server per inviare i dati di rilevazione;</li>
+
+</ol></li>
+<li class="fragment appear">Inviare all'utente una lista di tutti gli eventi registrati dal server in un determinato raggio (scelto dall'utente) dalla propria posizione, che verrà poi convertito in una mappa interattiva per una più facile visualizzazione.</li>
+
+</ol>
+</section>
+<section id="slide-org88a8124">
+<h3 id="org88a8124">Scelte implementative</h3>
+<aside class="notes">
+<p>
+DIVIDE ET IMPERA:
+Metodologia per la risoluzione di problemi: Il problema viene diviso in sottoproblemi più semplici e si continua fino a ottenere problemi facilmente risolvibili. Combinando le soluzioni ottenute si risolve il problema originario.
+</p>
+
+<p>
+MONOLITICO:
+Che risulta notoriamente più difficile da gestire e modificare nel tempo
+</p>
+
+</aside>
+
+<p>
+Seguendo il concetto del <i>DIVIDE ET IMPERA</i> si è scelto di spezzare le varie funzionalità che vengono messe a disposizione per rendere il codice facilmente manutenibile ed evitare lo stato di codice monolitico.
+</p>
+</section>
+<section id="slide-orgcea0871">
+<h3 id="orgcea0871">Tecnologie e strumenti utilizzati</h3>
+<aside class="notes">
+<p>
+make: Tool che automatizza il processo di creazione di file che dipendono da altri file, risolvendo le dipendenze e invocando programmi esterni per il lavoro necessario
+</p>
+
+
+<p>
+Makefile: Contiene tutte le direttive utilizzate dall'utility make
+</p>
+
+</aside>
+
+<p>
+Per una migliore gestione del Sistema, si è fatto uso dell'utility <a href="https://www.gnu.org/software/make/">make</a>, che ha facilitato molto il suo sviluppo.
+</p>
+
+<p>
+Di seguito riportiamo il contenuto del <code>Makefile</code> utilizzato durante lo sviluppo (Per la compilazione del programma basterà digitare il comando <code>make</code>, che in automatico attraverso il Makefile genererà automaticamente l'eseguibile):
+</p>
+</section>
+<section id="slide-orgcea0871-split">
+<pre><code data-line-numbers data-trim data-noescape>
+CC = gcc # Compilatore da usare
+
+CFLAGS = -O2 -Wall -Werror -g
+
+CFLAGS_WITH_THREADS = -pthread $(CFLAGS) # Flag necessaria per i sorgenti che fanno uso dei thread (L'opzione va esplicitata)
+
+LDLIBS = -lm # Flag da usare per il linker
+
+OBJECTFILES =
+
+DATABASE = HoleScanner.db
+
+HOST = $(shell hostname)
+
+ifeq ($(HOST), home)
+    LOAD_LIBRARY = -L/nix/store/321lz4qlsx691zan7fhkjbx6q5pk3pnr-sqlite-3.36.0/lib/ -lsqlite3
+else
+    LOAD_LIBRARY = -L/nix/store/321lz4qlsx691zan7fhkjbx6q5pk3pnr-sqlite-3.36.0/lib/ -lsqlite3
+endif
+
+TARGET-Server = server # nome dell'eseguibile prodotto per il server
+
+TARGET-Request-Handler = request-handler
+
+TARGET-Tollerance-Threshold = tollerance-threshold # nome dell'eseguibile prodotto per il server che gestisce la porta
+
+TARGET-Client = client # nome dell'eseguibile prodotto per il server
+
+SRC-Server = Server.c Database/SQLite/database.c Utils/utils.c
+
+SRC-Request-Handler = Request-Handler.c Database/SQLite/database.c Utils/utils.c
+
+SRC-Tollerance-Threshold = Tollerance-Threshold.c Utils/utils.c # File sorgente che ha il compito di inviare la porta a cui il client Android deve collegarsi
+
+SRC-Client = Client.c # Nome del file sorgente del Client
+
+all: $(TARGET-Server) $(TARGET-Request-Handler) $(TARGET-Tollerance-Threshold) $(TARGET-Client) 
+	@printf "\e[32m%b\e[0m" "\n\tCreazione del file completata\n"
+
+
+# Compiliamo il sorgente Server.c con i parametri sopra definiti
+$(TARGET-Server) : $(OBJECTFILES)
+	@printf "\e[32m%b\e[0m" "Compilazione del Server con i seguenti parametri:\n\n"
+	$(CC) $(CFLAGS_WITH_THREADS) -o $(TARGET-Server) $(OBJECTFILES) $(LDLIBS) $(LOAD_LIBRARY) $(SRC-Server)
+
+$(TARGET-Request-Handler) : $(OBJECTFILES)
+	@printf "\e[32m%b\e[0m" "Compilazione del Server (selection) con i seguenti parametri:\n\n"
+	$(CC) $(CFLAGS_WITH_THREADS) -o $(TARGET-Request-Handler) $(OBJECTFILES) $(LDLIBS) $(LOAD_LIBRARY) $(SRC-Request-Handler)
+
+$(TARGET-Tollerance-Threshold) : $(OBJECTFILES)
+	@printf "\e[32m%b\e[0m" "Compilazione del Server (tollerance) con i seguenti parametri:\n\n"
+	$(CC) $(CFLAGS_WITH_THREADS) -o $(TARGET-Tollerance-Threshold) $(OBJECTFILES) $(LDLIBS) $(SRC-Tollerance-Threshold)
+
+# Compiliamo il sorgente Client.c con i parametri sopra definiti
+$(TARGET-Client) : $(OBJECTFILES)
+	@printf "\e[32m%b\e[0m" "\nCompilazione del Client con i seguenti parametri:\n\n"
+	$(CC) $(CFLAGS) -o $(TARGET-Client) $(OBJECTFILES) $(LDLIBS) $(SRC-Client)
+
+.PHONY: depend clean # Controlliamo che non sia presente realmente un file chiamato clean
+
+clean:
+	rm -f $(OBJECTFILES) $(TARGET-Server) $(TARGET-Request-Handler) $(TARGET-Client) $(TARGET-Tollerance-Threshold) $(DATABASE)
+	@printf "\e[32m%b\e[0m" "Eliminazione file completata\n"
+
+valcheck:
+	@printf "\e[32m%b\e[0m" "Check dell'eseguibile con valgrind\n"
+	valgrind --tool=memcheck --leak-check=yes --track-origins=yes ./${TARGET-Server}
+</code></pre>
+</section>
+<section id="slide-org1cf30f5">
+<h3 id="org1cf30f5">Memorizzazione dei dati</h3>
+<aside class="notes">
+<p>
+SQLITE: Libreria software scritta in linguaggio C che implementa un DBMS SQL di tipo ACID incorporabile all'interno di applicazioni.
+</p>
+
+<p>
+PROTAGONISTI: Server e Client
+</p>
+
+</aside>
+
+<p>
+Per la natura dei dati gestiti si è scelto di fare uso del database relazionale SQLite, che ha permesso, proprio per la sua grande diffusione su larga scala, un suo utilizzo su entrambi i protagonisti del progetto.
+</p>
+</section>
+</section>
+<section>
+<section id="slide-org3ecdc02">
+<h2 id="org3ecdc02">Riferimenti</h2>
+<div style="width: 40%; float:left">
+  <ul>
+    <li><a href="https://natour2022.netlify.app/">HoleScanner sul web</a></li>
+    <li><a href="https://wiki.openstreetmap.org/wiki/Main_Page">OpenStreetMap</a></li>
+    <li><a href="https://github.com/square/retrofit">Retrofit</a></li>
+  </ul>
+</div>
+
+<div style="width: 40%; float:right">
+  <ul>
+    <li><a href="https://sqlite.org/index.html">SQLite</a></li>
+    <li><a href="https://m3.material.io/">Material Design 3</a></li>
+    <li><a href="https://revealjs.com/">RevealJS</a></li>
+  </ul>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org2c42d89">
+<h2 id="org2c42d89">Chi siamo</h2>
+<div style="width: 35%; float:left">
+  <p><img src="file:///home/valentino/UNI/HoleScanner/Risorse/Contributors/Valentino.png" alt="Valentino.png" width="45%" align="center"/></p>
+  <p><img src="file:///home/valentino/UNI/HoleScanner/Risorse/Contributors/Mario.png" alt="Mario.png" width="45%" align="center"/></p>
+</div>
+
+<div style="width: 65%; float:right">
+  <p>
+    Siamo <a href="https://github.com/luftmensch-luftmensch/">Valentino</a> e <a href="https://github.com/mgcarofano/">Mario</a>, due studenti appassionati di tecnologia ed iscritti al <b>Corso di Laurea in Informatica</b> <i>all'Università</i> <a href="https://www.unina.it/">Federico II</a> di Napoli.
+  </p>
+  <br>
+  <p>
+    Con il mondo a portata di mano, Valentino e Mario riescono a trovare il tempo tra gli studi per sviluppare e mostrare le loro applicazioni.
+  </p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org61108c3">
+<h2 id="org61108c3">Ringraziamenti</h2>
+<p>
+Ringraziamo i professori <b>Francesco Cutugno</b> e <b>Giovanni Scala</b> per lo splendido corso, che ci ha permesso di conoscere nuove interessanti tecnologie.
+</p>
+
+<p>
+Ringraziamo inoltre anche il dottorando <b>Marco Grazioso</b> per il supporto offertoci durante e dopo le lezioni.
+</p>
+</section>
+</section>
+<section>
+<section id="slide-orgf26668f">
+<h2 id="orgf26668f">Fine</h2>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+<script src="plugins/menu/menu.js"></script>
+<script src="plugins/highlight/highlight.js"></script>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes, RevealMenu, RevealHighlight], slideNumber:"c/t",
+menu: {side: 'right', width: 'normal', numbers: true, titleSelector: 'h1, h2, h3, h4, h5, h6', useTextContentForMissingTitles: true, hideMissingTitles: false, markers: true, custom: false, themes: false, themesPath: 'dist/theme/', transitions: true, openButton: true, openSlideNumber: true, keyboard: true, sticky: false, autoOpen: true, delayInit: false, openOnInit: false, loadIcons: true}, parallaxBackgroundImage: './background.jpg', parallaxBackgroundHorizontal: 130, parallaxBackgroundVertical: 3, backgroundTransition: 'zoom', hash: true, mouseWheel: false, width: 1900, height: 1060
+});
+
+</script>
+</body>
+</html>

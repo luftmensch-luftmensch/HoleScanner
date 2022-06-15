@@ -1,0 +1,246 @@
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+
+#+REVEAL_REVEAL_JS_VERSION: 4
+
+#+OPTIONS: timestamp:nil toc:nil num:nil title:nil author:nil
+#+REVEAL_INIT_OPTIONS: plugins: [RevealMarkdown, RevealZoom, RevealNotes, RevealMenu, RevealHighlight], slideNumber:"c/t"
+
+#+REVEAL_EXTRA_INITIAL_JS: menu: {side: 'right', width: 'normal', numbers: true, titleSelector: 'h1, h2, h3, h4, h5, h6', useTextContentForMissingTitles: true, hideMissingTitles: false, markers: true, custom: false, themes: false, themesPath: 'dist/theme/', transitions: true, openButton: true, openSlideNumber: true, keyboard: true, sticky: false, autoOpen: true, delayInit: false, openOnInit: false, loadIcons: true}, parallaxBackgroundImage: './background.jpg', parallaxBackgroundHorizontal: 130, parallaxBackgroundVertical: 3, backgroundTransition: 'zoom', hash: true, mouseWheel: false, width: 1900, height: 1060
+:END:
+#+title: HoleScanner
+#+SUBTITLE:  Mappa le buche con noi!
+#+author: Valentino Bocchetti - Mario Carofano
+#+begin_export html
+<!-- Per ovviare alla customizzazione post export del file customizzo le impostazioni e inserisco un custom stylesheet -->
+<link rel="stylesheet" href="./theme.css" id="theme"/>
+<link rel="stylesheet" href="plugins/highlight/monokai.css">
+
+
+<section id="sec-title-slide" data-background="./sfondo.jpg">
+  <h1><a href="https://natour2022.netlify.app/"><img src="logo.png" alt="HoleScanner" width="10%" align="top"/></a>HoleScanner</h1>
+
+  <h4 class="subtitle">Mappa le buche con noi!</h4>
+  <br>
+  <h2 class="author">Valentino Bocchetti - Mario Carofano</h2>
+
+  <img src="FedericoII.png" alt="FedericoII.png" width="8%" align="center"/>
+
+  <aside class="notes">
+    <p>
+        Prima di iniziare la presentazione, vi vorremmo informare della presenza di HoleScanner sul web.
+    </p>
+
+    <p>
+        Abbiamo infatti tirato su un sito web, che permetta non solo a voi clienti di conoscere la nostra implementazione del progetto, ma anche al mondo intero.
+    </p>
+
+    <p>
+        Vi lasciamo quindi il link per accedere al sito web in chat.
+    </p>
+  </aside>
+
+</section>
+
+<!-- Aggiungiamo uno stile per settare il testo scritto justified -->
+<style type="text/css">
+    .underline { text-decoration: underline; }
+    p { text-align: left; }
+</style>
+#+end_export
+# -*- (require 'ox-reveal) -*-
+# -*- (setq org-reveal-plugins nil) -*-
+# -*- (setq  org-reveal-title-slide nil) -*-
+# _*_ (setq max-specpdl-size 32000) _*_
+* La nostra idea di Potholes
+#+ATTR_REVEAL: :frag (appear)
+/HoleScanner ©/ nasce come prodotto di quanto appreso e studiato durante il corso di *Laboratorio di Sistemi Operativi* nel AA. 2021-2022, con lo scopo di puntare alla mappatura, visualizzazione e rilevamento delle buche sul manto stradale Italiano.
+** Su HoleScanner
+#+ATTR_REVEAL: :frag (appear)
+#+begin_center
+Se vi piace l’idea di migliorare lo stato delle strate della tua città, HoleScanner è l’app che fa per voi!
+#+end_center
+#+REVEAL: split
+
+Il progetto si concretizza in 2 componenti ben definite:
+#+ATTR_REVEAL: :frag (appear)
++ Un backend scritto in C per la gestione dei dati, hostato su una macchina virtuale messa a disposizione dal noto provider Azure;
++ Una applicazione mobile scritta in Java che fa da client (al momento offriamo solo un client android);
+** Primo avvio
+#+ATTR_REVEAL: :frag (appear)
+Al primo avvio agli utilizzatori della piattaforma viene mostrata una schermata di benvenuto in cui gli viene chiesto di inserire un nickname (utilizzato per la sua identificazione all'interno del Server), del tutto anonimo (si punta al massimo rispetto della privacy degli utenti).
+** Post registrazione
+#+ATTR_REVEAL: :frag (appear)
+In seguito alla conferma dell'inserimento del nickname, l'utente viene catapultato sulla Homepage, nella quale, attraverso la pressione di alcuni pulsanti ha modo di:
+#+ATTR_REVEAL: :frag (appear)
++ Inizializzare la calibrazione del dispositivo;
++ Iniziare la registrazione, correlata con un cronometro che indica il tempo trascorso dall'inizio della registrazione;
++ Interrompere la registrazione degli eventi;
+** Visualizzazione buche
+#+ATTR_REVEAL: :frag (appear)
+Dalla Homepage (che gestisce la registrazione di nuove buche) è possibile passare alla schermata di visualizzazione buche nei paraggi, che ricadano in un range definito precedentemente.
+** Demo
+Di seguito riportiamo una breve demo che mostra in azione *HoleScanner* durante il suo utilizzo:
+#+REVEAL: split
+
+#+begin_export html
+<!-- È possibile anche inserire il path del file che si vuole caricare -->
+<video data-autoplay src="./HoleScanner.mp4"></video>
+#+end_export
+* Guida al Server
+** Funzionalità
+#+ATTR_REVEAL: :frag (appear)
+Il Sistema, deve offrire, in seguito alla connessione (di tipo concorrente) di un client una serie di funzionalità:
+#+ATTR_REVEAL: :frag (appear)
+1. Permettere all'utente di avviare una sessione di registrazione eventi, durante la quale 
+   1. Si connette al server (Connessione di tipo socket di tipo =TCP/IP=) per richiedere i parametri di soglia;
+   2. In caso di una rilevazione di una buca, si connette nuovamente al server per inviare i dati di rilevazione;
+2. Inviare all'utente una lista di tutti gli eventi registrati dal server in un determinato raggio (scelto dall'utente) dalla propria posizione, che verrà poi convertito in una mappa interattiva per una più facile visualizzazione.
+** Scelte implementative
+#+BEGIN_NOTES
+DIVIDE ET IMPERA:
+Metodologia per la risoluzione di problemi: Il problema viene diviso in sottoproblemi più semplici e si continua fino a ottenere problemi facilmente risolvibili. Combinando le soluzioni ottenute si risolve il problema originario.
+
+MONOLITICO:
+Che risulta notoriamente più difficile da gestire e modificare nel tempo
+#+END_NOTES
+
+Seguendo il concetto del /DIVIDE ET IMPERA/ si è scelto di spezzare le varie funzionalità che vengono messe a disposizione per rendere il codice facilmente manutenibile ed evitare lo stato di codice monolitico.
+** Tecnologie e strumenti utilizzati
+#+BEGIN_NOTES
+make: Tool che automatizza il processo di creazione di file che dipendono da altri file, risolvendo le dipendenze e invocando programmi esterni per il lavoro necessario
+
+
+Makefile: Contiene tutte le direttive utilizzate dall'utility make
+#+END_NOTES
+
+Per una migliore gestione del Sistema, si è fatto uso dell'utility [[https://www.gnu.org/software/make/][make]], che ha facilitato molto il suo sviluppo.
+
+Di seguito riportiamo il contenuto del ~Makefile~ utilizzato durante lo sviluppo (Per la compilazione del programma basterà digitare il comando ~make~, che in automatico attraverso il Makefile genererà automaticamente l'eseguibile):
+#+REVEAL: split
+#+begin_export html
+<pre><code data-line-numbers data-trim data-noescape>
+CC = gcc # Compilatore da usare
+
+CFLAGS = -O2 -Wall -Werror -g
+
+CFLAGS_WITH_THREADS = -pthread $(CFLAGS) # Flag necessaria per i sorgenti che fanno uso dei thread (L'opzione va esplicitata)
+
+LDLIBS = -lm # Flag da usare per il linker
+
+OBJECTFILES =
+
+DATABASE = HoleScanner.db
+
+HOST = $(shell hostname)
+
+ifeq ($(HOST), home)
+    LOAD_LIBRARY = -L/nix/store/321lz4qlsx691zan7fhkjbx6q5pk3pnr-sqlite-3.36.0/lib/ -lsqlite3
+else
+    LOAD_LIBRARY = -L/nix/store/321lz4qlsx691zan7fhkjbx6q5pk3pnr-sqlite-3.36.0/lib/ -lsqlite3
+endif
+
+TARGET-Server = server # nome dell'eseguibile prodotto per il server
+
+TARGET-Request-Handler = request-handler
+
+TARGET-Tollerance-Threshold = tollerance-threshold # nome dell'eseguibile prodotto per il server che gestisce la porta
+
+TARGET-Client = client # nome dell'eseguibile prodotto per il server
+
+SRC-Server = Server.c Database/SQLite/database.c Utils/utils.c
+
+SRC-Request-Handler = Request-Handler.c Database/SQLite/database.c Utils/utils.c
+
+SRC-Tollerance-Threshold = Tollerance-Threshold.c Utils/utils.c # File sorgente che ha il compito di inviare la porta a cui il client Android deve collegarsi
+
+SRC-Client = Client.c # Nome del file sorgente del Client
+
+all: $(TARGET-Server) $(TARGET-Request-Handler) $(TARGET-Tollerance-Threshold) $(TARGET-Client) 
+	@printf "\e[32m%b\e[0m" "\n\tCreazione del file completata\n"
+
+
+# Compiliamo il sorgente Server.c con i parametri sopra definiti
+$(TARGET-Server) : $(OBJECTFILES)
+	@printf "\e[32m%b\e[0m" "Compilazione del Server con i seguenti parametri:\n\n"
+	$(CC) $(CFLAGS_WITH_THREADS) -o $(TARGET-Server) $(OBJECTFILES) $(LDLIBS) $(LOAD_LIBRARY) $(SRC-Server)
+
+$(TARGET-Request-Handler) : $(OBJECTFILES)
+	@printf "\e[32m%b\e[0m" "Compilazione del Server (selection) con i seguenti parametri:\n\n"
+	$(CC) $(CFLAGS_WITH_THREADS) -o $(TARGET-Request-Handler) $(OBJECTFILES) $(LDLIBS) $(LOAD_LIBRARY) $(SRC-Request-Handler)
+
+$(TARGET-Tollerance-Threshold) : $(OBJECTFILES)
+	@printf "\e[32m%b\e[0m" "Compilazione del Server (tollerance) con i seguenti parametri:\n\n"
+	$(CC) $(CFLAGS_WITH_THREADS) -o $(TARGET-Tollerance-Threshold) $(OBJECTFILES) $(LDLIBS) $(SRC-Tollerance-Threshold)
+
+# Compiliamo il sorgente Client.c con i parametri sopra definiti
+$(TARGET-Client) : $(OBJECTFILES)
+	@printf "\e[32m%b\e[0m" "\nCompilazione del Client con i seguenti parametri:\n\n"
+	$(CC) $(CFLAGS) -o $(TARGET-Client) $(OBJECTFILES) $(LDLIBS) $(SRC-Client)
+
+.PHONY: depend clean # Controlliamo che non sia presente realmente un file chiamato clean
+
+clean:
+	rm -f $(OBJECTFILES) $(TARGET-Server) $(TARGET-Request-Handler) $(TARGET-Client) $(TARGET-Tollerance-Threshold) $(DATABASE)
+	@printf "\e[32m%b\e[0m" "Eliminazione file completata\n"
+
+valcheck:
+	@printf "\e[32m%b\e[0m" "Check dell'eseguibile con valgrind\n"
+	valgrind --tool=memcheck --leak-check=yes --track-origins=yes ./${TARGET-Server}
+</code></pre>
+#+end_export
+** Memorizzazione dei dati
+#+BEGIN_NOTES
+SQLITE: Libreria software scritta in linguaggio C che implementa un DBMS SQL di tipo ACID incorporabile all'interno di applicazioni.
+
+PROTAGONISTI: Server e Client
+#+END_NOTES
+
+Per la natura dei dati gestiti si è scelto di fare uso del database relazionale SQLite, che ha permesso, proprio per la sua grande diffusione su larga scala, un suo utilizzo su entrambi i protagonisti del progetto.
+* Riferimenti
+#+begin_export html
+<div style="width: 40%; float:left">
+  <ul>
+    <li><a href="https://natour2022.netlify.app/">HoleScanner sul web</a></li>
+    <li><a href="https://wiki.openstreetmap.org/wiki/Main_Page">OpenStreetMap</a></li>
+    <li><a href="https://github.com/square/retrofit">Retrofit</a></li>
+  </ul>
+</div>
+
+<div style="width: 40%; float:right">
+  <ul>
+    <li><a href="https://sqlite.org/index.html">SQLite</a></li>
+    <li><a href="https://m3.material.io/">Material Design 3</a></li>
+    <li><a href="https://revealjs.com/">RevealJS</a></li>
+  </ul>
+</div>
+#+end_export
+* Chi siamo
+#+begin_export html
+<div style="width: 35%; float:left">
+  <p><img src="file:///home/valentino/UNI/HoleScanner/Risorse/Contributors/Valentino.png" alt="Valentino.png" width="45%" align="center"/></p>
+  <p><img src="file:///home/valentino/UNI/HoleScanner/Risorse/Contributors/Mario.png" alt="Mario.png" width="45%" align="center"/></p>
+</div>
+
+<div style="width: 65%; float:right">
+  <p>
+    Siamo <a href="https://github.com/luftmensch-luftmensch/">Valentino</a> e <a href="https://github.com/mgcarofano/">Mario</a>, due studenti appassionati di tecnologia ed iscritti al <b>Corso di Laurea in Informatica</b> <i>all'Università</i> <a href="https://www.unina.it/">Federico II</a> di Napoli.
+  </p>
+  <br>
+  <p>
+    Con il mondo a portata di mano, Valentino e Mario riescono a trovare il tempo tra gli studi per sviluppare e mostrare le loro applicazioni.
+  </p>
+</div>
+#+end_export
+* Ringraziamenti
+Ringraziamo i professori *Francesco Cutugno* e *Giovanni Scala* per lo splendido corso, che ci ha permesso di conoscere nuove interessanti tecnologie.
+
+Ringraziamo inoltre anche il dottorando *Marco Grazioso* per il supporto offertoci durante e dopo le lezioni.
+* Fine
+#+begin_export html
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+<script src="plugins/menu/menu.js"></script>
+<script src="plugins/highlight/highlight.js"></script>
+#+end_export

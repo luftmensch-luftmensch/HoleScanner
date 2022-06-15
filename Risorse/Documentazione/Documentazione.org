@@ -1,0 +1,924 @@
+#+begin_export latex
+\thispagestyle{empty}
+\newgeometry{margin=0pt}
+
+\begin{tikzpicture}[remember picture, overlay]
+ \begin{scope}
+
+   % STRUTTURA ESTERNA (ANGOLI E COLORAZIONE)
+   \node[
+     isosceles triangle,
+     isosceles triangle apex angle=90,
+     draw,
+     rotate=315,
+     fill=darkblue,
+     minimum size =55cm] (triangoloPrimoLivelloAngoloInferiore)
+   at ($(current page.south east)$)
+   {};
+
+   \node[
+     isosceles triangle,
+     isosceles triangle apex angle=90,
+     draw,
+     rotate=315,
+     fill=lightblue,
+     minimum size =50cm] (triangoloSecondoLivelloAngoloInferiore)
+   at ($(current page.south east)$)
+   {};
+
+   \node[
+     isosceles triangle,
+     isosceles triangle apex angle=90,
+     draw,
+     rotate=315,
+     fill=darkdark,
+     minimum size =35cm] (triangoloTerzoLivelloAngoloInferiore)
+   at ($(current page.south east)$)
+   {};
+
+   \node[
+     isosceles triangle,
+     isosceles triangle apex angle=90,
+     draw,
+     rotate=315,
+     fill=white,
+     minimum size =32cm] (triangoloQuartoLivelloAngoloInferiore)
+   at ($(current page.south east)$)
+   {};
+
+
+   \node[
+     isosceles triangle,
+     isosceles triangle apex angle=90,
+     draw,
+     rotate=135,
+     fill=white,
+     minimum size =31cm] (triangoloSuperiore)
+   at ($(current page.north west)$)
+   {};
+
+
+   % STRUTTURA DEL CERCHIO E IL SUO CONTENUTO
+   \node [circle, minimum size=15cm, fill=white, draw=darkblue, line width = 7pt, xshift=11cm, yshift=1cm](centro)
+   at ($(current page.west)$)
+   {};
+
+   \coordinate (logo) at (10.7,-7.5);
+   \node[rectangle, inner sep = 0pt, outer sep = 0pt, minimum width = 3.5cm, minimum height = 3.5cm]
+   at (logo){\includegraphics[width=3.5cm, height=3.5cm]{./Start-Page/FedericoII.png}};
+
+   \node[scale=1.7] at (9.45,-10){\LARGE{Progetto HoleScanner}};
+
+
+   \node[rectangle,
+     draw,
+     minimum width=4cm,
+     minimum height=2mm,
+     xshift= 7.18cm,
+     yshift= -11cm,
+     minimum height=2mm,
+     fill = darkblue] (r) at (0,0) {};
+
+   % Sostituire con un motto (Per il momento abbiamo pensato a "La tua nuova app per il trekking" (in corsivo(?)))
+   \node[scale=1.5] at (11,-13){\itshape{\LARGE{Università degli studi di Napoli}}};
+   \node[scale=1.5] at (11,-15){\itshape{\LARGE{Federico II}}};
+
+
+   %% STRUTTURA ANGOLO SINISTRO (angolo north-west)
+   \node[scale=3] at (1,-1){\includegraphics[height=10pt,width=10pt]{./Start-Page/calendar.png}};
+   \node[scale=2] at (6,-1){\itshape{\LARGE{A.A. 2021-2022}}};
+
+   %% STRUTTURA ANGOLO DESTRO (angolo south-east)
+
+   %% ID GRUPPO
+   \node[scale=3] at (12,-22){\includegraphics[height=10pt,width=10pt]{./Start-Page/group-id.png}};
+   \node[scale=1.4] at (15.3, -22.24){ID Gruppo: LSO\_2122\_23};
+
+   %% Valentino Bocchetti
+   \node[scale=3] at (12,-24){\includegraphics[height=10pt,width=10pt]{./Start-Page/graduated.png}};
+   \node[scale=1.4] at (16.2, -24.3){Valentino Bocchetti - N86003405};
+
+   %% Mario Gabriele Carofano
+   \node[scale=3] at (12,-26){\includegraphics[height=10pt,width=10pt]{./Start-Page/graduated.png}};
+   \node[scale=1.4] at (16.7, -26.3){Mario Gabriele Carofano - N86003228};
+
+ \end{scope}
+
+\end{tikzpicture}
+
+\newpage
+\restoregeometry
+% Reset del numero della pagina
+\setcounter{page}{0}
+\pagenumbering{roman} % Numerazione pagina per il toc
+\setcounter{page}{1}
+
+\renewcommand*\contentsname{\hfill Indice \hfill}
+\tableofcontents
+\clearpage
+
+\pagenumbering{arabic} % Numerazione pagina per i capitoli
+#+end_export
+#+OPTIONS: date:nil title:nil toc:nil
+#+STARTUP: overview
+#+STARTUP: hideblocks
+#+SETUPFILE: ./setup-org-latex.setup
+#+LATEX: \pagebreak
+* Revisioni
+#+begin_export latex
+% Inizio tabella 1
+\begin{center}
+  \begin{tabular}{{|p{0.1\textwidth}|p{0.1\textwidth}|p{0.3\textwidth}|p{0.4\textwidth}|}}
+    \hline
+    Versione & Data & Autore & Descrizione\\
+    \hline
+    0.1 & 01-11-2021 & Valentino Bocchetti & Creazione della struttura del documento e strutturazione dell'albero di lavoro\\
+     &  & Mario Gabriele Carofano & \\
+    \hline
+    0.2 & 11-11-2021 & Valentino Bocchetti & Completamento intestazione e struttura \\
+     &  & Mario Gabriele Carofano & del documento\\
+    \hline
+    0.3 & 27-11-2021 & Valentino Bocchetti & Completamento stesura della modellazione Class diagram e Sequence Diagram\\
+     &  & Mario Gabriele Carofano & \\
+    \hline
+    0.4 & 02-12-2021 & Valentino Bocchetti & Inizio stesura della presentazione\\
+     &  & Mario Gabriele Carofano & \\
+    \hline
+    0.4.1 & 13-01-2022 & Valentino Bocchetti & Creazione presentazione web\\
+     &  & Mario Gabriele Carofano & \\
+    \hline
+    0.4.2 & 13-01-2022 & Valentino Bocchetti & Aggiunte alla documentazione\\
+     &  & Mario Gabriele Carofano & \\
+    \hline
+    0.4.3 & 10-05-2022 & Valentino Bocchetti & Ripresa progetto. Modifiche minori alla struttura del\\
+     &  & Mario Gabriele Carofano & progetto\\
+    \hline
+    0.4.4 & 11-05-2022 & Valentino Bocchetti & Aggiunta componenti, Modifica Documentazione\\
+     &  & Mario Gabriele Carofano & Aggiunta Risorse.\\
+    \hline
+    0.4.5 & 11-05-2022 & Valentino Bocchetti & Aggiunta sorgenti per la creazione del Server con\\
+     &  &  & relativo Makefile\\
+    \hline
+    0.4.5.1 & 11-05-2022 & Mario Gabriele Carofano & Modifiche minori\\
+    \hline
+    0.4.5.2 & 12-05-2022 & Valentino Bocchetti & Introduzione funzioni ausiliare e threading\\
+     &  &  & Refactoring e aggiunta documentazione sul codice\\
+    \hline
+    0.4.5.3 & 12-05-2022 & Valentino Bocchetti & Aggiunta script per lo stress-test del server,\\
+     &  &  & refactoring e introduzione dei thread per la\\
+     &  &  & gestione della connessione.\\
+     &  &  & Modifiche al Makefile  \\
+     &  &  & (Aggiunta analisi con \texttt{valgrind})\\
+    \hline
+    0.4.5.4 & 12-05-2022 & Valentino Bocchetti & Inizializzazione e implementazione dell'Applicativo\\
+     &  &  & Mobile. Testing Client-Server con passaggio dati su\\
+     &  &  & rete locale. Implementazione struttura dati (model)\\
+     &  &  & per l'invio e il salvataggio dei dati al server\\
+     &  &  & Refactoring e Testing del salvataggio dei dati con\\
+     &  &  & SQLite\\
+    \hline
+  \end{tabular}
+\end{center}
+% Fine tabella 1
+\pagebreak
+#+end_export
+
+#+LATEX: \pagebreak
+#+begin_export latex
+% Inizio tabella 2
+\begin{center}
+  \begin{tabular}{{|p{0.1\textwidth}|p{0.1\textwidth}|p{0.3\textwidth}|p{0.4\textwidth}|}}
+    \hline
+    Versione & Data & Autore & Descrizione\\
+    \hline
+    0.4.5.5 & 12-05-2022 & Valentino Bocchetti & Aggiunta lato server della richiesta della porta per la connessione\\
+    \hline
+    0.4.5.6 & 12-05-2022 & Valentino Bocchetti & Primi test con il trimming dei dati ricevuti\\
+     &  & Mario Gabriele Carofano & Primi test con la gestione e inserimento di dati con\\
+     &  &  & SQLite3\\
+    \hline
+    0.4.5.7 & 13-05-2022 & Valentino Bocchetti & Modifiche e primi test del server completo \\
+     &  & Mario Gabriele Carofano &  Modifiche e test dell'applicativo Server \\
+    \hline
+    0.4.5.8 & 14-05-2022 & Valentino Bocchetti & Modifiche funzioni gestione Database - Test con Cursore \\
+     &  &  & Aggiunte al makefile - Modifiche minori al sorgente \\
+    \hline
+    0.4.5.9 & 14-05-2022 & Valentino Bocchetti & Passaggio all'utilizzo dei prepared statement per gli inserimenti e loro test. \\
+     &  &  Mario Gabriele Carofano & Aggiunta documentazione sorgente \\
+     &  &  & Eliminazione funzioni legacy (Database) \\
+    \hline
+    0.4.6 & 15-05-2022 & Valentino Bocchetti & Aggiunta funzione di SELECT con range. Testing della funzione \\
+      &  &  & Creazione struttura per il client android. Definizione temi e classi. \\
+      &  &  & Aggiutna struttura generale della grafica dell'applicativo mobile. Rifiniture \\
+      &  &  & Aggiunta componenti (Applicativo Mobile). \\
+    \hline
+    0.4.6.1 & 15-05-2022 & Valentino Bocchetti & Modifica build e aggiunta metodi per la connessione al Server (Applicativo mobile) \\
+      &  &  Mario Gabriele Carofano & Aggiunta gestione sensori \\
+    \hline
+    0.4.6.2 & 16-05-2022 & Valentino Bocchetti & Suddivisione gestione sensoristica.\\
+      &  &  & Aggiunta cronometro in seguito all'avvio della registrazione. \\
+      &  &  & Aggiunta componenti e gestione visibilità. \\
+      &  &  & Modifiche firme metodi + testing applicativo server. \\
+    \hline
+    0.4.6.3 & 17-05-2022 & Valentino Bocchetti & Introduzione classe per la gestione della ricerca delle buche nelle vicinanze (Lato Client) \\
+      &  &  & Aggiunta gestione della visualizzazione delle buche su una mappa interattiva (Lato Client). \\
+      &  & Mario Gabriele Carofano & Testing collegamento Client-Server. \\
+    \hline
+    0.4.6.4 & 17-05-2022 & Valentino Bocchetti & Modifica gestione tolleranza (Client Android) \\
+      &  &  & Introduzione funzione di logging lato Server \\
+    \hline
+    0.4.6.5 & 18-05-2022 & Valentino Bocchetti & Modifiche Lato Client/Server. \\
+      &  &  Mario Gabriele Carofano & Testing applicativo completo. \\
+    \hline
+  \end{tabular}
+\end{center}
+% Fine tabella 2
+#+end_export
+#+LATEX: \pagebreak
+
+#+begin_export latex
+\begin{center}
+  \begin{tabular}{{|p{0.1\textwidth}|p{0.1\textwidth}|p{0.3\textwidth}|p{0.4\textwidth}|}}
+  \hline
+    0.4.6.6 & 19-05-2022 & Valentino Bocchetti & Aggiunta controlli per la scelta del nickname. \\
+    &  &  Mario Gabriele Carofano & Eliminazione file di test inutilizzati (Server) \\
+  \hline
+    0.4.6.7 & 19-05-2022 & Valentino Bocchetti & Aggiunta controllo permessi sulla posizione \\
+     &  &  & Aggiunta menu per la selezione delle distanze (retrevial buche nelle vicinanze). \\
+     &  &  & Refactoring e testing (Applicativo Client) \\
+     &  &  & Bug fixes (Gestione degli avvisi sulla UI) \\
+  \hline
+    0.4.6.8 & 20-05-2022 & Valentino Bocchetti & Aggiunta controlli per la gestione di inizio tracciamento delle buche \\
+  \hline
+    0.4.6.9 & 20-05-2022 & Mario Gabriele Carofano & Aggiunte alla documentazione e modifica logo.\\
+  \hline
+    0.4.7 & 21-05-2022 & Valentino Bocchetti & Aggiunta controllo di raggiungibilità del server (Lato Client). \\
+      &  &  & Aggiunti commenti e voci di debug (Lato Client) \\
+      &  &  Mario Gabriele Carofano & Aggiunta controlli e alla documentazione \\
+  \hline
+  \end{tabular}
+\end{center}
+#+end_export
+#+LATEX: \pagebreak
+* Presentazione
+#+begin_export latex
+\noindent\makebox[\textwidth]{\includegraphics[width=\paperwidth]{Risorse/Title.jpg}}
+#+end_export
+
+#+begin_center
+Vi presentiamo HoleScanner!
+#+end_center
+
+$HoleScanner^{\copyright}$ è un progetto che punta alla mappatura, visualizzazione e rilevamento delle buche sul manto stradale Italiano.
+
+
+Questo progetto si concretizza in 2 componenti ben definite:
++ Un backend scritto in ~C~ per la gestione dei dati, hostato \autocite{HOSTING} su una macchina virtuale offerta da Azure \autocite{VirtualMachines};
++ Una applicazione ~Android~, scritta in ~Java~ che fa da client;
+
+Il sistema ha lo scopo di memorizzare e rendere disponibile su una mappa interattiva una lista di eventi generati dai clienti indicanti la posizione di una buca, rilevata attraverso l'analisi di un repentino cambiamento dell'accelerazione lungo l'asse verticale che superi una soglia minima \autocite{SOGLIAMINIMA}
+** Guida al Server
+*** Funzionalità
+Il Sistema, deve offrire, in seguito alla connessione (di tipo concorrente) di un client una serie di funzionalità:
+1. Permettere all'utente di avviare una sessione di registrazione eventi, durante la quale 
+   1. Si connette al server (Connessione di tipo socket di tipo =TCP/IP=) per richiedere i parametri di soglia;
+   2. In caso di una rilevazione di una buca, si connette nuovamente al server per inviare i dati di rilevazione;
+2. Inviare all'utente una lista di tutti gli eventi registrati dal server in un determinato raggio (scelto dall'utente) dalla propria posizione, che verrà poi convertito in una mappa interattiva per una più facile visualizzazione.
+#+LATEX: \vfill
+*** Scelte implementative
+Seguendo il concetto del /DIVIDE ET IMPERA/ \autocite{DIVIDE_ET_IMPERA} si è scelto di spezzare le varie funzionalità che vengono messe a disposizione per rendere il codice facilmente manutenibile ed evitare lo stato di codice monolitico \autocite{MONOLITICO}.
+*** Tecnologie e strumenti utilizzati
+Per una migliore gestione del Sistema, si è fatto uso dell'utility [[https://www.gnu.org/software/make/][make]] \autocite{MAKE}, che ha facilitato molto il suo sviluppo.
+
+Di seguito riportiamo il contenuto del ~Makefile~ \autocite{MAKEFILE} utilizzato durante lo sviluppo:
+
+#+ATTR_LATEX: :options style=BASH
+#+begin_src bash
+CC = gcc # Compilatore da usare
+
+CFLAGS = -O2 -Wall -Werror -g
+
+CFLAGS_WITH_THREADS = -pthread $(CFLAGS) # Flag necessaria per i sorgenti che fanno uso dei thread (L'opzione va esplicitata)
+
+LDLIBS = -lm # Flag da usare per il linker
+
+OBJECTFILES =
+
+DATABASE = HoleScanner.db
+
+HOST = $(shell hostname)
+
+ifeq ($(HOST), home)
+    LOAD_LIBRARY = -lsqlite3
+else
+    LOAD_LIBRARY = -lsqlite3
+endif
+
+TARGET-Server = server # nome dell'eseguibile prodotto per il server
+
+TARGET-Request-Handler = request-handler
+
+TARGET-Tollerance-Threshold = tollerance-threshold # nome dell'eseguibile prodotto per il server che gestisce la porta
+
+TARGET-Client = client # nome dell'eseguibile prodotto per il server
+
+SRC-Server = Server.c Database/SQLite/database.c Utils/utils.c
+
+SRC-Request-Handler = Request-Handler.c Database/SQLite/database.c Utils/utils.c
+
+SRC-Tollerance-Threshold = Tollerance-Threshold.c Utils/utils.c # File sorgente che ha il compito di inviare la porta a cui il client Android deve collegarsi
+
+SRC-Client = Client.c # Nome del file sorgente del Client
+
+all: $(TARGET-Server) $(TARGET-Request-Handler) $(TARGET-Tollerance-Threshold) $(TARGET-Client) 
+	@printf "\e[32m%b\e[0m" "\n\tCreazione del file completata\n"
+
+
+# Compiliamo il sorgente Server.c con i parametri sopra definiti
+$(TARGET-Server) : $(OBJECTFILES)
+	@printf "\e[32m%b\e[0m" "Compilazione del Server con i seguenti parametri:\n\n"
+	$(CC) $(CFLAGS_WITH_THREADS) -o $(TARGET-Server) $(OBJECTFILES) $(LDLIBS) $(LOAD_LIBRARY) $(SRC-Server)
+
+$(TARGET-Request-Handler) : $(OBJECTFILES)
+	@printf "\e[32m%b\e[0m" "Compilazione del Server (selection) con i seguenti parametri:\n\n"
+	$(CC) $(CFLAGS_WITH_THREADS) -o $(TARGET-Request-Handler) $(OBJECTFILES) $(LDLIBS) $(LOAD_LIBRARY) $(SRC-Request-Handler)
+
+$(TARGET-Tollerance-Threshold) : $(OBJECTFILES)
+	@printf "\e[32m%b\e[0m" "Compilazione del Server (tollerance) con i seguenti parametri:\n\n"
+	$(CC) $(CFLAGS_WITH_THREADS) -o $(TARGET-Tollerance-Threshold) $(OBJECTFILES) $(LDLIBS) $(SRC-Tollerance-Threshold)
+
+# Compiliamo il sorgente Client.c con i parametri sopra definiti
+$(TARGET-Client) : $(OBJECTFILES)
+	@printf "\e[32m%b\e[0m" "\nCompilazione del Client con i seguenti parametri:\n\n"
+	$(CC) $(CFLAGS) -o $(TARGET-Client) $(OBJECTFILES) $(LDLIBS) $(SRC-Client)
+
+.PHONY: depend clean # Controlliamo che non sia presente realmente un file chiamato clean
+
+clean:
+	rm -f $(OBJECTFILES) $(TARGET-Server) $(TARGET-Request-Handler) $(TARGET-Client) $(TARGET-Tollerance-Threshold) $(DATABASE)
+	@printf "\e[32m%b\e[0m" "Eliminazione file completata\n"
+
+valcheck:
+	@printf "\e[32m%b\e[0m" "Check dell'eseguibile con valgrind\n"
+	valgrind --tool=memcheck --leak-check=yes --track-origins=yes ./${TARGET-Server}
+#+end_src
+
+Per la compilazione del programma basterà digitare il comando ~make~ (che in automatico attraverso il Makefile genererà automaticamente l'eseguibile)
+*** Memorizzazione dei dati
+Per la natura dei dati gestiti si è scelto di fare uso del database relazionale SQLite \autocite{SQLITE}, che ha permesso, proprio per la sua grande diffusione su larga scala, un suo utilizzo su entrambi i protagonisti del progetto \autocite{PROTAGONISTI}.
+** Guida al Client
+Prestando particolare attenzione alla semplicità di utilizzo dell'applicativo Android si è scelto di fare uso di un'interfaccia lineare.
+*** Primo avvio
+Al primo avvio all'utente viene mostrata una schermata di benvenuto in cui può inserire un nome utente (utilizzato per la sua identificazione all'interno del Server).
+*** Post registrazione
+In seguito alla conferma dell'inserimento del nickname, l'utente viene catapultato sulla Homepage, nella quale, attraverso la pressione di alcuni pulsanti ha modo di:
++ Inizializzare la calibrazione del dispositivo \autocite{Calibrazione};
++ Iniziare la registrazione, correlata con un cronometro che indica il tempo trascorso dall'inizio della registrazione;
++ Interrompere la registrazione degli eventi
+*** Visualizzazione buche
+Dalla Homepage (che gestisce la registrazione di nuove buche) è possibile passare alla schermata di visualizzazione buche nei paraggi, che ricadano in un range definito precedentemente.
+*** Memorizzazione dei dati
+Così come il Server, anche l'applicativo client fa uso del database relazionale SQLite, per il salvataggio di alcune informazioni necessarie al suo corretto funzionamento
+#+LATEX: \vfill
+*** Prototipazione visuale via Mock-up
+Di seguito vengono riportati i Mockup utilizzati durante lo sviluppo dell'applicativo mobile, che permettono agli utilizzatori della piattaforma di farsi un'idea di come sarà l'applicazione con la quale andranno successivamente a interfacciarsi:
+
+#+begin_export latex
+%% 1-4
+\begin{center}
+  \begin{minipage}[t]{0.23\textwidth}%
+      \includegraphics[width=\textwidth]{Mockup/HoleScanner 1.jpg}
+  \end{minipage}
+  \begin{minipage}[t]{0.23\textwidth}%
+      \includegraphics[width=\textwidth]{Mockup/HoleScanner 2.jpg}
+  \end{minipage}
+  \begin{minipage}[t]{0.23\textwidth}%
+      \includegraphics[width=\textwidth]{Mockup/HoleScanner 3.jpg}
+  \end{minipage}
+  \begin{minipage}[t]{0.23\textwidth}%
+      \includegraphics[width=\textwidth]{Mockup/HoleScanner 4.jpg}
+  \end{minipage}
+\end{center}
+
+\hfill
+
+%% 5-8
+\begin{center}
+  \begin{minipage}[t]{0.23\textwidth}%
+      \includegraphics[width=\textwidth]{Mockup/HoleScanner 5.jpg}
+  \end{minipage}
+  \begin{minipage}[t]{0.23\textwidth}%
+      \includegraphics[width=\textwidth]{Mockup/HoleScanner 6.jpg}
+  \end{minipage}
+  \begin{minipage}[t]{0.23\textwidth}%
+      \includegraphics[width=\textwidth]{Mockup/HoleScanner 7.jpg}
+  \end{minipage}
+  \begin{minipage}[t]{0.23\textwidth}%
+      \includegraphics[width=\textwidth]{Mockup/HoleScanner 8.jpg}
+  \end{minipage}
+\end{center}
+#+end_export
+*** Modelli di Dominio
+#+begin_center
+*Class Diagram*
+#+end_center
+
+Di seguito riportiamo il diagramma delle classi di Analisi prodotto durante lo sviluppo della piattaforma HoleScanner:
+[[file:Diagrams/Class Diagram/Class Diagram.png]]
+
+
+#+begin_center
+*Sequence Diagram*
+#+end_center
+
+Di seguito riportiamo i diagrammi di sequenza prodotti durante lo sviluppo della piattaforma HoleScanner, in merito alla:
++ Inizializzazione dell'accelerometro, la rilevazione di una buca e successivamente della posizione corrente, e infine l'invio dei dati prodotti al server;
++ Recupero delle buche a partire dalla richiesta dell'utente al server, e loro successiva visualizzazione su mappa interattiva
+#+ATTR_LATEX: :width 500px :height 220px
+[[file:Diagrams/Sequence Diagram/Sequence Diagram 1 (accellerometerInitializer).png]]
+
+#+ATTR_LATEX: :width 500px :height 220px
+[[file:Diagrams/Sequence Diagram/Sequence Diagram 2 (retrievalPotholes).png]]
+* Protocollo applicativo
+Come già indicato in precedenza abbiamo preferito il protocollo ~TCP~ rispetto al protocollo ~UDP~, per la presenza di un controllo della congestione e affidabilità in termini di =invio/ricezione= di dati \autocite{UDP}.
+
+Lo sviluppo dell'applicativo è stato inizialmente verticalizzato sulla creazione dello scheletro del Server, per avere un primo approccio nudo e crudo allo scambio di messaggi via ~socket~.
+
+Per avere un programma robusto e manutenibile si è fatto largo uso delle ~good pratices~ che questo tipo di comunicazione richiede. In particolare:
++ La connessione viene aperta solo nel momento in cui devono essere =inviati/ricevuti= dati (Si evita in questo modo di tenere aperte connessioni in momenti in cui queste non vengono sfruttate);
++ Si effettuano controlli di raggiungibilità del server lato client \autocite{RAGGIUNGIBILE};
++ Vengono controllati i dati =inviati/ricevuti= sempre prima di compiere operazioni che possano minare il corretto funzionamento di ~Server~ e ~Client~ \autocite{CONTROLLO};
++ Vengono effettuati controlli e gestione degli stati di tutte le operazioni lato ~Server.~
+* Dettagli implementativi
+** Server
+Di seguito riportiamo alcuni dettagli implementativi della struttura del Server. In particolare:
++ Analisi e controllo delle principali ~system call~ che il C mette a disposizione per la programmazione tramite socket \autocite{INFOC};
++ Analisi delle funzioni di logging e controllo degli stati utilizzate;
++ Analisi e controllo delle principali ~system call~ per la gestione del Database utilizzato.
+
+#+ATTR_LATEX: :options style=CPP
+#+begin_src C++
+/*
+  Gestore degli errori delle funzioni `socket`, `bind`, `listen`, `accept` e `read`
+  (Sfruttiamo il fatto che tutti questi metodi abbiano come valore di ritorno in caso di errore `-1`).
+
+  Per brevità utilizziamo questa funzione con lo scopo di evitare di scrivere
+  molteplici `if statement` che controllino il `return value` (questa funzione verrà riportata nel particolare nella sezione relativa al logging e al controllo dello stato)
+
+    `int check(int expr, const char *msg);`
+*/
+check((serverSocket = socket(AF_INET, SOCK_STREAM, 0)), "[-]Errore nella creazione della socket");
+
+// Funzione di logging
+logging("[+] Server socket inizializzata correttamente");
+
+// Azzeramento della regione di memoria (Good pratices nell'ambito della socket programming)
+bzero(&serverAddr, sizeof(serverAddr));
+
+// Configurazione delle impostazioni della struct dell' indirizzo del server
+serverAddr.sin_family = AF_INET;
+
+/*
+  Settaggio del numero di porta (definito in precedenza attraverso la macro `#define PORT 9000`).
+  Si fa uso della funzione htons  per la conversione di una porta a una "network byte order"
+*/
+serverAddr.sin_port = htons(PORT);
+
+//Con `INADDR_ANY`, accetta connessioni dirette a qualunque indirizzo, (infatti uno stesso host può avere più indirizzi IP)
+
+serverAddr.sin_addr.s_addr = htonl(INADDR_ANY);
+
+// Mappatura della socket a tutte le interfacce disponibili (che su un server per ovvi motivi è una cosa fortemente voluta), e non solo localhost)
+check((bind(serverSocket, (SA *)&serverAddr, sizeof(serverAddr))), "[-]Errore sulla bind");
+logging("[+] Binding inizializzato correttamente");
+
+// Con la listen definiamo quante connessioni possono essere in attesa di essere accettate
+// Analogamente ad altre funzioni precendetemente elencate facciamo uso di una macro (`#define SERVER_BACKLOG 1000`)
+check((listen(serverSocket, SERVER_BACKLOG)), "[-]Errore sulla listen");
+info_logging(PORT, SERVER_BACKLOG);
+#+end_src
+
+In seguito alla ~system call listen~ entriamo in un loop dove facciamo uso dei thread per la gestione della connessione e delle conseguenti operazioni da eseguire:
+
+#+ATTR_LATEX: :options style=CPP
+#+begin_src C++
+// Loop infinito che permette al server di continuare a servire connessioni una volta terminata la precente
+for(;;){
+  printf("[+] In attesa di connessioni...\n");
+
+  addressLen = sizeof(SA_IN);
+
+  // Analogamente alle altre operazioni sfruttiamo la funzione per il controllo del suo stato
+  check((clientSocket = accept(serverSocket, (struct sockaddr *)&clientAddr, (socklen_t *)&addressLen )), "[-]Errore sulla accept");
+
+  client_logging((char*)inet_ntoa((struct in_addr)clientAddr.sin_addr));
+
+  // Definizione della thread pool necessaria alla gestione simultanea di X connessioni (andando a evitare situazioni di dead-lock e race condition)
+  pthread_t thread_pool;
+
+  int *pClient = malloc(sizeof(int));
+
+  *pClient = clientSocket;
+
+  // int pthread_create(pthread_t *tid, const pthread_attr_t *attr, void *(*start_func) (void *), void arg);
+  if (pthread_create(&thread_pool, NULL, gestisciConnessione, pClient) < 0){
+    perror("[-] Errore nella creazione di un thread\n");
+  }
+}
+#+end_src
+
+Infine di seguito riportiamo nel dettaglio la funzione richiesta per l'utilizzo di ~pthread_create~:
+
+#+ATTR_LATEX: :options style=CPP
+#+begin_src C++
+void * gestisciConnessione(void* p_clientSocket){
+  int clientSocket = *(int*)p_clientSocket;
+
+  free(p_clientSocket); // Una volta definito il `clientSocket` non necessitiamo più della variabile `p_clientSocket`
+
+  // Per una più facile gestione facciamo uso della macro `#define BUFSIZE 4096`
+  char buffer[BUFSIZE];
+  size_t bytes_letti;
+  int dimensioneMessaggio=0;
+  
+
+  // Variabili necessarie al trim del buffer facendo uso del carattere `;` come end
+  char *find;
+  size_t index;
+
+  // Lettura del messaggio ricevuto da parte del client
+  while((bytes_letti = read(clientSocket, buffer+dimensioneMessaggio, sizeof(buffer)-dimensioneMessaggio-1 )) > 0){
+    dimensioneMessaggio += bytes_letti;
+    if(dimensioneMessaggio > BUFSIZE-1 || buffer[dimensioneMessaggio-1] == '\n') break;
+  }
+
+  check(bytes_letti, "[-] Errore sulla recv");
+
+  printf("\tRichiesta: %s\n", buffer);
+
+  // La funzione `strchr` ricerca la prima occorrenza del  carattere `;` (unsigned char) nel buffer `buffer`
+  find = strchr(buffer, ';');
+
+  // Calcoliamo l'indice su cui la funzione `strchr` ha trovato la prima occorrenza
+  index = (size_t)(find - buffer);
+
+  // Definiamo un contenitore sufficiente a contenere la query che il client ha inviato
+  char query[index + 1];
+
+  // Copio la parte che mi interessa del buffer all'interno del contenitore query secondo l'indice `index` calcolato precedentemente
+  strncpy(query, buffer, index);
+  query[index] = '\0';
+
+  // Con questa funzione inseriamo all'interno del database precedentemente creato la query correttamente costruita
+  insertData(query);
+
+  // Infine ripuliamo i 2 buffer per ripartire da zero con la prossima iterazione
+  bzero(buffer, sizeof(buffer));
+  bzero(query, sizeof(query));
+
+  fflush(stdout);
+
+
+  // Infine chiudiamo la connessione
+  close(clientSocket);
+  logging("[+] Connessione terminata");
+  return NULL; // la funzione è `void`
+}
+#+end_src
+
+Terminato il discorso delle ~system call~ inerenti alla /socket programming/, passiamo all'analisi delle funzioni di logging di supporto per la scrittura del Server:
+#+ATTR_LATEX: :options style=CPP
+#+begin_src C++
+/*
+  Funzione di utility utilizzata nelle funzioni di logging vere e proprie (rendendole più snelle)
+  Ritorna la data e tempo corrente
+,*/
+static inline struct tm get_time() {
+  time_t t = time(NULL);
+  return *localtime(&t);
+}
+
+// Funzione per il logging con l'orario
+void logging(char* message){
+  struct tm time = get_time();
+  // Per ottenere un output più descrittivo facciamo uso di colorazioni diverse in base al contenuto da mostrare
+  printf(ANSI_COLOR_GREEN "%s " ANSI_COLOR_RESET ANSI_COLOR_BLUE TIME_FORMAT ANSI_COLOR_RESET "\n", message, TIME_FORMAT_ARGS(time));
+}
+
+void info_logging(int PORT, int MAX_CONNECTION) {
+  struct tm time = get_time();
+  printf(ANSI_COLOR_GREEN "[+] Server Socket in ascolto sulla porta"
+	 ANSI_COLOR_CYAN " %d "
+	 ANSI_COLOR_GREEN "con un numero massimo di "
+	 ANSI_COLOR_CYAN " %d "
+	 ANSI_COLOR_GREEN "connessioni"
+	 TIME_FORMAT ANSI_COLOR_RESET "\n", PORT, MAX_CONNECTION, TIME_FORMAT_ARGS(time));
+}
+
+
+// Funzione per il logging con orario e IP del client
+void client_logging(char* message){
+  struct tm time = get_time();
+  printf("[+]Connesso con il client con IP:[%s] " TIME_FORMAT "\n", message, TIME_FORMAT_ARGS(time));
+}
+
+// Funzione di controllo dello stato delle operazioni socket
+int check(int expr, const char *msg) {
+  if (expr == SOCKET_ERROR) {
+    perror(msg);
+    exit(EXIT_FAILURE);
+  }
+  return expr;
+}
+#+end_src
+
+Infine passiamo all'analisi delle funzioni di supporto per la gestione del Database SQLITE:
+#+ATTR_LATEX: :options style=CPP
+#+begin_src C++
+void databaseInit(){
+   sqlite3 *database;
+   int sqlDbHandler;
+
+   sqlite3_stmt *sqlPreparedStatement;
+
+   // Definizione della tabella che conterrà i dati ricevuti dal client
+   const char *table = "CREATE TABLE IF NOT EXISTS HoleScanner(NickName VARCHAR(25) NOT NULL, Latitudine DOUBLE NOT NULL, Longitudine DOUBLE NOT NULL);";
+
+   // Apertura e controllo dello stato database
+   checkDBstatus((sqlDbHandler = sqlite3_open_v2(DATABASE_NAME, &database, SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE| SQLITE_OPEN_NOMUTEX, NULL)), "[-] Errore nell'apertura del database pre-init");
+   infoDatabaseOperation("[+] Apertura del database avvenuta con successo\n");
+
+   // Preparazione dello statement pre-inserimento
+   checkDBstatus((sqlDbHandler = sqlite3_prepare_v2(database, table, strlen(table), &sqlPreparedStatement, NULL)), "[-] Errore nella costruzione del prepared statement pre-creazione tabella\n");
+
+   infoDatabaseOperation("[+] Preparazione dello statement pre-creazione tabella avvenuto con successo\n");
+
+   checkDBstatus(sqlite3_step(sqlPreparedStatement), "[-] Errore nell'esecuzione dello statement per la creazione della tabella\n");
+   infoDatabaseOperation("[+] Operazione di creazione della tabella avvenuta con successo\n");
+
+   checkDBstatus((sqlDbHandler = sqlite3_finalize(sqlPreparedStatement)), "[-] Errore nella distruzione del prepared statement post-creazione tabella\n");
+
+   // Chiusura del database
+   sqlite3_close(database);
+   infoDatabaseOperation("[+] Chiusura del database avvenuta con successo in seguito alla creazione della tabella\n");
+}
+
+
+void insertData(char *insertion){
+
+  sqlite3 *database;
+  int sqlDbHandler;
+  sqlite3_stmt *sqlPreparedStatement;
+
+   // Apertura e controllo dello stato database
+   checkDBstatus((sqlDbHandler = sqlite3_open_v2(DATABASE_NAME, &database,
+					       SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE | SQLITE_OPEN_NOMUTEX, NULL)), "[-] Errore nell'apertura del database pre-inserimento dati\n");
+   infoDatabaseOperation("[+] Apertura del database avvenuta con successo\n");
+
+   // Preparazione dello statement pre-inserimento
+   checkDBstatus((sqlDbHandler = sqlite3_prepare_v2(database, insertion, strlen(insertion), &sqlPreparedStatement, NULL)),
+					    "[-] Errore nella costruzione del prepared statement pre-inserimento dati\n");
+   infoDatabaseOperation("[+] Preparazione dello statement pre-inserimento avvenuto con successo\n");
+
+   // Esecuzione dello statement
+   checkDBstatus(sqlite3_step(sqlPreparedStatement), "[-] Errore nell'esecuzione dello statement per l'inserimento dei dati\n");
+   infoDatabaseOperation("[+] Operazione di inserimento avvenuta con successo\n");
+
+   // Eliminazione del prepared statement non più necessario
+   checkDBstatus((sqlDbHandler = sqlite3_finalize(sqlPreparedStatement)), "[-] Errore nella distruzione del prepared statement post-inserimento dati\n");
+
+   // Chiusura del database
+   sqlite3_close(database);
+   infoDatabaseOperation("[+] Chiusura del database in seguito alla selezione dei dati avvenuta con successo\n");
+}
+
+void sendDataAfterSelection(char *query, int clientSocket){
+  char *nickname, *latitudine, *longitudine; // parametri utilizzati per il salvataggio dei dati delle varie colonne della Tabella
+
+  char buffer[50];
+  sqlite3 *database;
+  int sqlDbHandler;
+  sqlite3_stmt *sqlPreparedStatement;
+
+  // Apertura del database
+  // A differenza delle altree operazioni la SELECT ci permette di aprire il database in `READONLY` mode (non dobbiamo modificare infatti i record)
+  checkDBstatus((sqlDbHandler = sqlite3_open_v2(DATABASE_NAME, &database, SQLITE_OPEN_READONLY | SQLITE_OPEN_NOMUTEX, NULL)), "[-] Errore nell'apertura del database pre-selezione dati\n");
+  infoDatabaseOperation("[+] Apertura del database per la selezione dei dati con range avvenuta  con successo\n");
+
+  // Esecuzione della SELECT
+  infoDatabaseOperation("[+] Esecuzione della SELECT con parametri nella tabella\n");
+
+  checkDBstatus((sqlDbHandler = sqlite3_prepare_v2(database, query, strlen(query),
+                    &sqlPreparedStatement, NULL)),
+                "[-] Errore nella costruzione del prepared statement pre-selezione con parametri dati\n");
+  
+  while (sqlite3_step(sqlPreparedStatement) == SQLITE_ROW){
+    nickname = (char *)sqlite3_column_text(sqlPreparedStatement, 0);
+    latitudine = (char *)sqlite3_column_text(sqlPreparedStatement, 1);
+    longitudine = (char *)sqlite3_column_text(sqlPreparedStatement, 2);
+
+    bzero(buffer, 50);
+
+    snprintf(buffer, 50, "%s;%s;%s;\n",nickname, latitudine,longitudine);
+    printf("%s\n", buffer);
+
+    send(clientSocket, buffer, 50, 0);
+    bzero(buffer, 50);
+  }
+
+  checkDBstatus((sqlDbHandler = sqlite3_finalize(sqlPreparedStatement)), "[-] Errore nella distruzione del prepared statement post-selezione dati\n");
+
+  // Chiusura del database
+  sqlite3_close(database);
+  infoDatabaseOperation("[+] Chiusura del database in seguito alla selezione dei dati avvenuta con successo\n");
+}
+#+end_src
+
+Come è facile intuire anche in questo caso abbiamo sfruttato una funzione che controlla lo stato delle varie operazioni, che riportiamo per completezza di seguito:
+#+ATTR_LATEX: :options style=CPP
+#+begin_src C++
+int checkDBstatus(int expr, const char *msg) {
+  if (expr == SQLITE_ERROR || expr == SQLITE_BUSY) {
+    perror(msg);
+    exit(EXIT_FAILURE);
+  }
+  return expr;
+}
+
+void infoDatabaseOperation(char *message){
+  // Analogamente a come fatto per la gestione delle informazioni inerenti alla socket programming facciamo uso di colorazioni diverse in base al contenuto da mostrare
+  printf(ANSI_COLOR_YELLOW "%s" ANSI_COLOR_RESET, message);
+}
+#+end_src
+** Client
+Di seguito riportiamo alcuni dettagli implementativi della struttura del Client. In particolare per rendere il codice facilmente modificabile si fa uso di una classe apposita (la classe ~Constants~) che contiene tutte le costanti utilizzate dall'applicativo \autocite{CONSTANTS}.
+*** Recupero della tolleranza
+La funzione di seguito riportata ha il compito di recuperare il valore di tolleranza definito dal Server, che verrà utilizzato da ogni client come valore di confronto con il valore ottenuto dal sensore in esame
+
+#+ATTR_LATEX: :options style=JAVA
+#+begin_src java
+public double getTolerance(){
+
+    /*
+      Settiamo un valore di default per la tolleranza
+      Il valore di ritorno verrà poi confrontato in seguito per controllare che sia stato possibile ottenere una soglia del server
+      Si preferisce definirne uno in modo da poter continuare a utilizzare il programma nonostante non sia stato possibile farne il retrieval dal Server
+      Utilizziamo una Stringa in quanto le connessioni client/server via socket sono costituite da uno scambio di stringhe
+      Il valore scelto è leggermente diverso da quello definito sul Server, in modo da rendere validi i rilevamenti ottenuti
+    ,*/
+    String tollerance = "0.000000";
+    try{
+        Log.d(ConnectionTolleranceHandler_TAG, "Creazione dell'indirizzo server per il retrieval della tolleranza");
+        InetAddress serverAddr = InetAddress.getByName(Constants.SERVER_ADDR);
+
+        // Un timeout di circa 30 secondi è più che sufficiente in base ai nostri test (locali e non)
+        if(serverAddr.isReachable(30)){
+            Log.d(ConnectionTolleranceHandler_TAG, "Il server è raggiungibile! Inizializzo la socket");
+
+            Log.d(ConnectionTolleranceHandler_TAG, "Creazione socket per il retrieval della tolleranza");
+
+            Socket socket = new Socket(serverAddr, Constants.selectPort(ElencoEndPoint.RETRIEVAL_TOLLERANCE));
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+            Log.d(ConnectionTolleranceHandler_TAG, "Retrieval della tolleranza dal Server");
+            tollerance = reader.readLine();
+            tollerance = tollerance.replace("\u0000", "");
+
+            Log.d(ConnectionTolleranceHandler_TAG, "Tolleranza: " + tollerance);
+
+            Log.d(ConnectionTolleranceHandler_TAG, "Chiusura della socket");
+            socket.close();
+        } else {
+            Log.d(ConnectionTolleranceHandler_TAG, "Il server non è raggiungibile! Utilizzo il valore di tolleranza di default");
+        }
+    }catch (IOException e){
+        Log.d(ConnectionTolleranceHandler_TAG, e.getLocalizedMessage());
+    }
+    return Double.parseDouble(tollerance);
+}
+#+end_src
+*** Recupero dati
+Di seguito riportiamo la funzione necessaria al recupero dei dati in seguito ad una richiesta effettuata in precedenza:
+
+#+ATTR_LATEX: :options style=JAVA
+#+begin_src java
+public static ArrayList<Potholes> getPotHolesWithRanges(String query){
+    ArrayList<Potholes> result  = new ArrayList<>();
+    try{
+
+        // Invio della query al server
+        Log.d(ConnectionReceiverHandler_TAG, "Creazione dell'indirizzo server per il retrieval dei dati presenti sul Server");
+        InetAddress serverAddr = InetAddress.getByName(Constants.SERVER_ADDR);
+
+        // Un timeout di circa 30 secondi è più che sufficiente in base ai nostri test (locali e non)
+        if(serverAddr.isReachable(30)){
+            Log.d(ConnectionReceiverHandler_TAG, "Il server è raggiungibile! Inizializzo la socket");
+            Log.d(ConnectionReceiverHandler_TAG, "Creazione socket per il retrieval dei dati presenti sul Server");
+            Socket socket = new Socket(serverAddr, Constants.selectPort(ElencoEndPoint.RETRIEVAL_DATA_WITH_PARAMETERS_PORT));
+
+            // Alternativa 1
+            Log.d(ConnectionReceiverHandler_TAG, "Creazione e invio della query al server");
+            PrintWriter out = new PrintWriter(new BufferedWriter( new OutputStreamWriter(socket.getOutputStream())), true);
+            out.println(query);
+
+            Log.d(ConnectionReceiverHandler_TAG, "Chiusura del writer non più necessario");
+
+            // Lettura dei dati in seguito all'invio della query
+            Log.d(ConnectionReceiverHandler_TAG, "Inizializzazione lettura dei dati che matchano la query precedentemente inviata al server");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+
+            String responseBuffer;
+            while (true){
+                responseBuffer = reader.readLine();
+                responseBuffer = responseBuffer.replace("\u0000", "");
+                if (responseBuffer.isEmpty()){
+                    Log.d(ConnectionReceiverHandler_TAG, "Terminati i dati da ricevere");
+                    break;
+                }
+                Log.d("Stringa", responseBuffer);
+                String[] fields = responseBuffer.split(";");
+                Log.d(ConnectionReceiverHandler_TAG, "Aggiunta dei seguenti campi ottenuti " + Arrays.toString(fields) + " alla lista di Potholes");
+                result.add(new Potholes(fields[0], Double.parseDouble(fields[1]), Double.parseDouble(fields[2])));
+            }
+            Log.d(ConnectionReceiverHandler_TAG, "Chiusura della socket");
+            socket.close();
+        } else {
+            Log.d(ConnectionReceiverHandler_TAG, "Il server non è raggiungibile! Impossibile fare il retriaval dei dati");
+        }
+    }catch (IOException e){
+        Log.d(ConnectionReceiverHandler_TAG, e.getLocalizedMessage());
+    }
+    return result;
+}
+#+end_src
+*** Invio dati
+Infine riportiamo la funzione necessaria all'invio dei dati in seguito al rilevamento di una buca e successivamente della sua posizione:
+#+ATTR_LATEX: :options style=JAVA
+#+begin_src java
+public void run(){
+    try{
+        Log.d(ConnectionSenderHandler_TAG, "Creazione dell'indirizzo server per l'invio dei dati al Server");
+        InetAddress serverAddr = InetAddress.getByName(Constants.SERVER_ADDR);
+
+        // Un timeout di circa 30 secondi è più che sufficiente in base ai nostri test (locali e non)
+        if(serverAddr.isReachable(30)) {
+            Log.d(ConnectionSenderHandler_TAG, "Il server è raggiungibile! Inizializzo la socket");
+            Log.d(ConnectionSenderHandler_TAG, "Creazione socket per l'invio dei dati al Server");
+            Socket socket = new Socket(serverAddr, Constants.selectPort(ElencoEndPoint.SEND_DATA_PORT));
+
+            Log.d(ConnectionSenderHandler_TAG, "Invio dei dati al Server");
+            PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+            out.println(message);
+
+            Log.d(ConnectionSenderHandler_TAG, "Chiusura del buffer utilizzato per l'invio dei dati al Server");
+            out.close();
+
+            Log.d(ConnectionSenderHandler_TAG, "Chiusura della socket");
+            socket.close();
+        } else {
+            Log.d(ConnectionSenderHandler_TAG, "Il server è raggiungibile! Non è stato possibile inviare i dati");
+        }
+    }catch (IOException io){
+        Log.d(ConnectionSenderHandler_TAG, "IOException: " + io.getLocalizedMessage());
+    }
+}
+#+end_src
+
+#+LATEX: \pagebreak
+* Codice sorgente sviluppato
+Il codice sorgente prodotto durante lo sviluppo di $HoleScanner^{\copyright}$ è disponibile sulla piattaforma /GitHub/, che ne ha permesso anche il versionamento.
+
+Di seguito riportiamo un link per il download: [[https://github.com/luftmensch-luftmensch/HoleScanner]] \autocite{informazioniRepository}
+* Contributori
+#+begin_export latex
+\begin{center}
+  \begin{minipage}[t]{0.4\textwidth}
+    \includegraphics[width=0.4\linewidth]{../Contributors/Valentino.png}
+
+    Informazioni:
+    \begin{itemize}
+      \item Valentino Bocchetti
+      \item \href{mailto:vale.bocchetti@studenti.unina.it}{vale.bocchetti@studenti.unina.it} % Se clicco sul link permetto l'invio della mail
+      \item N86003405
+    \end{itemize}
+  \end{minipage}%
+  \hfill%
+  \begin{minipage}[t]{0.4\textwidth}
+    \includegraphics[width=.4\linewidth]{../Contributors/Mario.png}
+
+    Informazioni:
+    \begin{itemize}
+      \item Mario Gabriele Carofano
+      \item \href{mailto:m.carofano@studenti.unina.it}{m.carofano@studenti.unina.it} % Se clicco sul link permetto l'invio della mail
+      \item N86003228
+    \end{itemize}
+      
+  \end{minipage}
+\end{center}
+#+end_export
+* Ringraziamenti
+Ringraziamo i professori [[mailto:francesco.cutugno@unina.it][Francesco Cutugno]] e [[mailto:giovanni.scala@unina.it][Giovanni Scala]] per lo splendido corso, che ci ha permesso di conoscere nuove interessanti tecnologie.
+
+Ringraziamo inoltre anche il dottorando [[mailto:marco.grazioso@unina.it][Marco Grazioso]] per il supporto offertoci durante e dopo le lezioni.
